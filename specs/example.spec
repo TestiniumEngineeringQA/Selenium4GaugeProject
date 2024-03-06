@@ -19,3 +19,4 @@ tags:delete product and check
 ## Go to
 tags:Go to
 * Go to "https://www.amazon.com.tr/" address
+* Wait "30" seconds
