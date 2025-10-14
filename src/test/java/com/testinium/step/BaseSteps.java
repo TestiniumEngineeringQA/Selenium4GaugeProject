@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.*;
@@ -29,7 +32,7 @@ public class BaseSteps extends BaseTest {
     private String compareText;
 
     public BaseSteps() {
-        initMap(getFileList());
+        //initMap(getFileList());
     }
 
     WebElement findElement(String key) {
@@ -153,6 +156,25 @@ public class BaseSteps extends BaseTest {
             Thread.sleep(seconds * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Step({"takescreenshot"})
+    public void takescreenshot() {
+        try {
+
+            // Screenshot alma
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+            // Kaydetme
+            File targetFile = new File("screenshot.png");
+            Files.copy(screenshot.toPath(), targetFile.toPath());
+
+            System.out.println("Screenshot alındı: " + targetFile.getAbsolutePath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            driver.quit();
         }
     }
 

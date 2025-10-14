@@ -20,3 +20,9 @@ tags:delete product and check
 tags:Go to
 * Go to "https://www.amazon.com.tr/" address
 * Wait "30" seconds
+* takescreenshot
+
+## Go to2
+tags:Go to2
+* Go to "https://www.amazon.com.tr/" address
+* Wait "30" seconds
