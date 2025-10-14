@@ -34,7 +34,7 @@ public class BaseTest {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String browserName = System.getenv("BROWSER");              // "chrome" / "firefox"
-    private String gridBaseUrl = System.getenv("SELENIUM_GRID_URL");    // örn: http://172.25.1.110:4444
+    private String gridBaseUrl = "http://172.25.1.110:4444";
     private String testiniumKey = System.getenv("key");                 // testinium:key
 
     private static final String DEFAULT_DIRECTORY_PATH = "elementValues";
