@@ -6,18 +6,18 @@
   },
   {
     "key": "userName_LoginPage",
-    "value": "username",
+    "value": "login-email-input",
     "type": "id"
   },
   {
     "key": "password_LoginPage",
-    "value": "password",
+    "value": "login-password-input",
     "type": "id"
   },
   {
     "key": "signIn_LoginPage",
-    "value": "input[type='submit'][value='SIGN IN']",
-    "type": "css"
+    "value": "login-submit-button",
+    "type": "id"
   },
   {
     "key": "forgetPassword_LoginPage",
