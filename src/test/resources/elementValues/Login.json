@@ -1,18 +1,18 @@
 [
   {
     "key": "userName_LoginPage",
-    "value": "username",
+    "value": "login-email-input",
     "type": "id"
   },
   {
     "key": "password_LoginPage",
-    "value": "password",
+    "value": "login-password-input",
     "type": "id"
   },
   {
     "key": "signInButton_LoginPage",
-    "value": "input[type='submit'][value='SIGN IN']",
-    "type": "css"
+    "value": "login-submit-button",
+    "type": "id"
   },
   {
     "key": "userInf_LoginPage",
