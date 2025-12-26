@@ -5,21 +5,6 @@
     "type": "class"
   },
   {
-    "key": "userName_LoginPage",
-    "value": "login-email-input",
-    "type": "id"
-  },
-  {
-    "key": "password_LoginPage",
-    "value": "login-password-input",
-    "type": "id"
-  },
-  {
-    "key": "signIn_LoginPage",
-    "value": "login-submit-button",
-    "type": "id"
-  },
-  {
     "key": "forgetPassword_LoginPage",
     "value": "switch-forgot",
     "type": "id"
