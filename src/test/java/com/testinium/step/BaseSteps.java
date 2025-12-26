@@ -32,7 +32,7 @@ public class BaseSteps extends BaseTest {
     private String compareText;
 
     public BaseSteps() {
-        //initMap(getFileList());
+        initMap(getFileList());
     }
 
     WebElement findElement(String key) {
