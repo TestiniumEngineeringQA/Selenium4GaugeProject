@@ -139,4 +139,14 @@ Tags: GithubIleGirisKontrolu
 * Github butonuna tıklanır
 * Github ile giriş sayfasının ekrana geldiği görülür
 
+Wait kontrolü
+-------------------------
+Tags: WaitKontrolu
+
+* "https://account.testinium.com/uaa/login" sayfasına gelinir
+* "1020" saniye bekle
+* Github butonuna tıklanır
+* Github ile giriş sayfasının ekrana geldiği görülür
+
+
 
