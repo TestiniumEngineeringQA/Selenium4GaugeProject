@@ -114,39 +114,3 @@ Tags: LoginSayfasindanKayitOlSayfasinaGecis
 * "https://account.testinium.com/uaa/login" sayfasına gelinir
 * Kayıt ol butonuna tıklanır
 * Kayıt ol paneli görülür
-
-Linkedin ile giriş kontrolü
----------------------------
-Tags:LinkedinIleGirisKontrolu
-
-* "https://account.testinium.com/uaa/login" sayfasına gelinir
-* Linkedin butonuna tıklanır
-* Linkedin ile giriş sayfasının ekrana geldiği görülür
-
-Google ile giriş kontrolü
---------------------------
-Tags: GoogleIleGirisKontrolu
-
-* "https://account.testinium.com/uaa/login" sayfasına gelinir
-* Google butonuna tıklanır
-* Google ile giriş sayfasının ekrana geldiği görülür
-
-Github ile giriş kontrolü
--------------------------
-Tags: GithubIleGirisKontrolu
-
-* "https://account.testinium.com/uaa/login" sayfasına gelinir
-* Github butonuna tıklanır
-* Github ile giriş sayfasının ekrana geldiği görülür
-
-Wait kontrolü
--------------------------
-Tags: WaitKontrolu
-
-* "https://account.testinium.com/uaa/login" sayfasına gelinir
-* "1020" saniye bekle
-* Github butonuna tıklanır
-* Github ile giriş sayfasının ekrana geldiği görülür
-
-
-
