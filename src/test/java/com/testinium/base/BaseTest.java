@@ -6,9 +6,11 @@ import com.google.gson.reflect.TypeToken;
 import com.testinium.driver.TestiniumSeleniumDriver;
 import com.testinium.model.ElementInfo;
 import com.thoughtworks.gauge.AfterScenario;
+import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeScenario;
 //import org.apache.commons.lang.StringUtils;
 
+import com.thoughtworks.gauge.BeforeSuite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
