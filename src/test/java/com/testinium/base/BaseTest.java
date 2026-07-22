@@ -53,7 +53,7 @@ public class BaseTest {
     /**
      *
      */
-    @BeforeScenario
+    @BeforeSuite
     public void setUp() {
         logger.info("************************************  BeforeScenario  ************************************");
         try {
@@ -97,7 +97,7 @@ public class BaseTest {
     }
 
 
-    @AfterScenario
+    @AfterSuite
     public void tearDown() {
         driver.quit();
     }
