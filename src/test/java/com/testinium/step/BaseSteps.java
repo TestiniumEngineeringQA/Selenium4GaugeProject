@@ -13,7 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.*;
@@ -993,7 +995,19 @@ public class BaseSteps extends BaseTest {
         logger.info(key + " elementine odaklanıldı.");
     }
 
+    @Step({"Read txt file <path> and print",
+            "<path> yolundaki txt dosyasını oku ve yazdır"})
+    public void readTxtFileAndPrint(String path) throws IOException {
+        Path txtFile = Path.of(path);
 
+        assertTrue(Files.isRegularFile(txtFile), "Txt dosyası bulunamadı: " + txtFile);
+
+        String content = Files.readString(txtFile, StandardCharsets.UTF_8);
+
+        System.out.printf("[FILE_READ_TEST] Txt dosyası bulundu: path=%s, size=%d bytes%n",
+                txtFile, Files.size(txtFile));
+        System.out.println(content);
+    }
 
 }
 

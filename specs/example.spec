@@ -26,3 +26,7 @@ tags:Go to
 tags:Go to2
 * Go to "https://www.amazon.com.tr/" address
 * Wait "30" seconds
+
+## Read uploaded txt file
+tags:read txt file
+* Read txt file "/app/uploads/fileName.txt" and print
