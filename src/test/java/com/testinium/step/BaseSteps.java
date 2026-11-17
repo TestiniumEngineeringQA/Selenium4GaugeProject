@@ -288,6 +288,37 @@ public class BaseSteps extends BaseTest {
         }
     }
 
+    @Step({"Check page is loaded",
+            "Sayfanın yüklendiğini kontrol et"})
+    public void checkPageIsLoaded() {
+        new WebDriverWait(driver, Duration.ofSeconds(60)).until(webDriver -> {
+            Object state = ((JavascriptExecutor) webDriver).executeScript("return document.readyState");
+            return "complete".equals(state) || "interactive".equals(state);
+        });
+        logger.info("Sayfa yüklendi. Başlık: '" + driver.getTitle() + "', URL: " + driver.getCurrentUrl());
+    }
+
+    @Step({"Scroll to bottom of the page",
+            "Sayfanın en altına kaydır"})
+    public void scrollToBottom() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        logger.info("Sayfanın en altına kaydırıldı.");
+    }
+
+    @Step({"Scroll to top of the page",
+            "Sayfanın en üstüne kaydır"})
+    public void scrollToTop() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0)");
+        logger.info("Sayfanın en üstüne kaydırıldı.");
+    }
+
+    @Step({"Go back to previous page",
+            "Önceki sayfaya geri dön"})
+    public void goBack() {
+        driver.navigate().back();
+        logger.info("Önceki sayfaya dönüldü: " + driver.getCurrentUrl());
+    }
+
     @Step({"Wait for element to load with css <css>",
             "Elementin yüklenmesini bekle css <css>"})
     public void waitElementLoadWithCss(String css) {
