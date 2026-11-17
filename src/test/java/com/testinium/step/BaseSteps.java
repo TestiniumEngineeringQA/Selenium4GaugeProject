@@ -19,6 +19,7 @@ import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -228,6 +229,63 @@ public class BaseSteps extends BaseTest {
     public void goToUrl(String url) {
         driver.get(url);
         logger.info(url + " adresine gidiliyor.");
+    }
+
+    @Step({"Go to configured <propertyName> address",
+            "Konfigürasyondaki <propertyName> adresine git"})
+    public void goToConfiguredUrl(String propertyName) {
+        String url = System.getenv(propertyName);
+        if (url == null || url.isBlank()) {
+            url = System.getProperty(propertyName);
+        }
+
+        assertNotNull(url,
+                propertyName + " konfigürasyonu bulunamadı. env/default/default.properties dosyasını kontrol edin.");
+        assertFalse(url.isBlank(), propertyName + " konfigürasyonu boş olamaz.");
+
+        driver.get(url);
+        logger.info(propertyName + " konfigürasyonundan alınan " + url + " adresine gidiliyor.");
+    }
+
+    @Step({"Automatically click a random clickable element on the page",
+            "Sayfadaki tıklanabilir elementlerden birine otomatik olarak rastgele tıkla"})
+    public void clickRandomClickableElementOnPage() {
+        By genericClickableLocator = By.cssSelector(
+                "a[href], button:not([type='submit']), input[type='button'], "
+                        + "[role='button'], [onclick], [tabindex]:not([tabindex='-1'])");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        try {
+            List<WebElement> clickableElements = wait.until(webDriver -> {
+                List<WebElement> candidates = webDriver.findElements(genericClickableLocator);
+                List<WebElement> visibleElements = new ArrayList<>();
+                for (WebElement candidate : candidates) {
+                    try {
+                        Rectangle rectangle = candidate.getRect();
+                        if (candidate.isDisplayed() && candidate.isEnabled()
+                                && rectangle.getWidth() > 0 && rectangle.getHeight() > 0) {
+                            visibleElements.add(candidate);
+                        }
+                    } catch (StaleElementReferenceException ignored) {
+                        // DOM yenilenirken kaybolan aday bir sonraki bekleme turunda tekrar aranır.
+                    }
+                }
+                return visibleElements.isEmpty() ? null : visibleElements;
+            });
+
+            int randomIndex = ThreadLocalRandom.current().nextInt(clickableElements.size());
+            WebElement selectedElement = clickableElements.get(randomIndex);
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].scrollIntoView({block: 'center', inline: 'center'})", selectedElement);
+
+            logger.info("Sayfadaki " + clickableElements.size()
+                    + " tıklanabilir element arasından " + randomIndex + " indeksli element seçildi.");
+            selectedElement.click();
+        } catch (WebDriverException exception) {
+            logger.warn("Rastgele tıklama tamamlanamadı; ekran görüntüsü aksiyonunu tetiklemek için PAGE_DOWN gönderiliyor.",
+                    exception);
+            actions.sendKeys(Keys.PAGE_DOWN).perform();
+        }
     }
 
     @Step({"Wait for element to load with css <css>",
