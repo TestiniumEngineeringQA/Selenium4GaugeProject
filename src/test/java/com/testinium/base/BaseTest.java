@@ -11,6 +11,7 @@ import com.thoughtworks.gauge.BeforeScenario;
 //import org.apache.commons.lang.StringUtils;
 
 import com.thoughtworks.gauge.BeforeSuite;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -69,6 +70,14 @@ public class BaseTest {
                 options.addArguments("--disable-web-security");
                 options.addArguments("--allow-running-insecure-content");
                 options.addArguments("--allow-cross-origin-auth-prompt");
+                // Uzak Linux/Docker node'larda Chrome sekmesinin dusmesini engellemeye yardimci olur.
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--disable-extensions");
+                options.addArguments("--window-size=1365,768");
+                // Agir sayfalarda tum alt kaynaklari beklemeden DOM hazir oldugunda devam eder.
+                options.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
                 Map<String, Object> prefs = new HashMap<>();
                 options.setExperimentalOption("prefs", prefs);
