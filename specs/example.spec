@@ -30,3 +30,8 @@ tags:Go to2
 ## Read uploaded txt file
 tags:read txt file
 * Read txt file "/app/uploads/fileName.txt" and print
+
+## Go to and wait 10 minutes
+tags:wait10min
+* Go to "https://www.amazon.com.tr/" address
+* Wait "600" seconds
