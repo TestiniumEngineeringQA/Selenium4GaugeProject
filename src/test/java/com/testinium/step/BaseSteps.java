@@ -157,15 +157,7 @@ public class BaseSteps extends BaseTest {
     public void waitBySeconds(int seconds) {
         try {
             logger.info(seconds + " saniye bekleniyor.");
-            System.out.println(seconds + " saniye bekleniyor.");
-            int remaining = seconds;
-            while (remaining > 0) {
-                int chunk = Math.min(60, remaining);
-                Thread.sleep(chunk * 1000L);
-                remaining -= chunk;
-                System.out.println("Bekleme devam ediyor: " + (seconds - remaining) + "/" + seconds + " sn geçti.");
-            }
-            System.out.println(seconds + " saniye bekleme tamamlandı.");
+            Thread.sleep(seconds * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -236,36 +228,9 @@ public class BaseSteps extends BaseTest {
     @Step({"Go to <url> address",
             "<url> adresine git"})
     public void goToUrl(String url) {
-        // Selenium HTTP istemcisi ~180 sn'de vazgeçiyor; sayfa yükleme süresini bunun altında tut.
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIMEOUT_SECONDS));
+        driver.get(url);
         logger.info(url + " adresine gidiliyor.");
-        System.out.println(url + " adresine gidiliyor. (pageLoadTimeout: " + PAGE_LOAD_TIMEOUT_SECONDS + " sn)");
-        long start = System.currentTimeMillis();
-        try {
-            driver.get(url);
-            long elapsed = System.currentTimeMillis() - start;
-            logger.info(url + " adresi " + elapsed + " ms içinde yüklendi.");
-            System.out.println(url + " adresi " + elapsed + " ms içinde yüklendi.");
-        } catch (TimeoutException e) {
-            String msg = url + " adresi " + PAGE_LOAD_TIMEOUT_SECONDS
-                    + " sn içinde tam yüklenmedi, yükleme durdurulup devam ediliyor.";
-            logger.warn(msg);
-            System.out.println(msg);
-            try {
-                ((JavascriptExecutor) driver).executeScript("window.stop();");
-            } catch (Exception stopEx) {
-                logger.warn("window.stop() çalıştırılamadı: " + stopEx.getMessage());
-                System.out.println("window.stop() çalıştırılamadı: " + stopEx.getMessage());
-            }
-        }
-        try {
-            System.out.println("Mevcut URL: " + driver.getCurrentUrl() + " | Başlık: " + driver.getTitle());
-        } catch (Exception e) {
-            System.out.println("Mevcut URL/başlık okunamadı: " + e.getMessage());
-        }
     }
-
-    private static final int PAGE_LOAD_TIMEOUT_SECONDS = 60;
 
     @Step({"Wait for element to load with css <css>",
             "Elementin yüklenmesini bekle css <css>"})
