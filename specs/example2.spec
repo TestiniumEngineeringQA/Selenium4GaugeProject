@@ -10,3 +10,5 @@ General Test Scenario
 Tags: generalTestScenario
 
 * "https://www.testinium.com" adresine git
+* Wait "300" seconds
+* Wait "300" seconds

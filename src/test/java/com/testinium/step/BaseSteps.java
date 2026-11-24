@@ -156,6 +156,7 @@ public class BaseSteps extends BaseTest {
             "<int> saniye bekle"})
     public void waitBySeconds(int seconds) {
         try {
+            System.out.println("wait started");
             logger.info(seconds + " saniye bekleniyor.");
             Thread.sleep(seconds * 1000);
         } catch (InterruptedException e) {
