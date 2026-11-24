@@ -10,3 +10,4 @@ General Test Scenario
 Tags: generalTestScenario
 
 * "https://www.testinium.com" adresine git
+* "600" saniye bekle
